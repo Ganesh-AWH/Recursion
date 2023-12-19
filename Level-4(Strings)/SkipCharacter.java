@@ -3,9 +3,10 @@ public class SkipCharacter{
         String s1 = "acaadgkea";
 
         StringBuilder sb = new StringBuilder();
-        skip(s1,sb);
+        skip1(s1,sb);
+        System.out.println(skip2(s1));
     }
-    private static void skip(String s1,StringBuilder sb){
+    private static void skip1(String s1,StringBuilder sb){
         if(s1.isEmpty()){
             System.out.println(sb.toString());
             return;
@@ -14,9 +15,17 @@ public class SkipCharacter{
         char c = s1.charAt(0);
 
         if(c == 'a'){
-            skip(s1.substring(1),sb);
+            skip1(s1.substring(1),sb);
         }else{
-            skip(s1.substring(1),sb.append(c));
+            skip1(s1.substring(1),sb.append(c));
         }
+    }
+
+    private static String skip2(String s){
+        if(s.isEmpty()) return "";
+        char c = s.charAt(0);
+        if(c == 'a') return skip2(s.substring(1));
+
+        return c + skip2(s.substring(1));
     }
 }
