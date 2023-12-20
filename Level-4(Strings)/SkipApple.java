@@ -1,9 +1,10 @@
 public class SkipApple {
     public static void main(String[] args) {
-        String s = "baxappledshf";
+        String s = "baxappldshf";
         StringBuilder ans = new StringBuilder();
         skipApple(s,ans);
         System.out.println(skipApple1(s));
+        System.out.println("Skipping App : "+ skipApp(s));
     }
     private static void skipApple(String s,StringBuilder sb){
         if(s.isEmpty()){
@@ -27,6 +28,20 @@ public class SkipApple {
             return skipApple1(s.substring(5));
         }else{
             return c + skipApple1(s.substring(1));
+        }
+    }
+
+    //skip the apple when it is not equal to apple
+
+    private static String skipApp(String s){
+        if(s.isEmpty()){
+            return "";
+        }
+        char c = s.charAt(0);
+        if(s.startsWith("app") && !s.startsWith("apple")){
+            return skipApp(s.substring(3));
+        }else{
+            return c+skipApp(s.substring(1));
         }
     }
 }
