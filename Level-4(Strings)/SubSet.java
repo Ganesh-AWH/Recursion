@@ -3,12 +3,12 @@ import java.util.List;
 
 public class SubSet {
     public static void main(String[] args) {
-        String s = "abcdefghij";
+        String s = "abc";
         // printSubset("",s);
-        // List<String> ans = new ArrayList<>();
-        // makeSubsetList(s,"",ans);
-        // System.out.println(ans);
-        System.out.println(makeSubsetList1(s,""));
+        List<String> ans = new ArrayList<>();
+        makeSubsetList(s,"",ans);
+        System.out.println(ans);
+        // System.out.println(makeSubsetList1(s,""));
     }
     private static void printSubset(String processed,String unprocessed){
         if(unprocessed.isEmpty()){
@@ -25,12 +25,14 @@ public class SubSet {
     //passing list as argument and adding the subsets
     private static void makeSubsetList(String unprocessed,String processed,List<String> ans){
         if(unprocessed.isEmpty()){
-            ans.add(processed.toString());
+            ans.add(processed);
             return;
         }
 
         char c = unprocessed.charAt(0);
+        //including c        
         makeSubsetList(unprocessed.substring(1),processed+c,ans);
+        //not including c
         makeSubsetList(unprocessed.substring(1), processed, ans);
     }
 
