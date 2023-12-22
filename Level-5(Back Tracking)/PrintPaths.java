@@ -4,19 +4,19 @@ import java.util.List;
 public class PrintPaths {
     public static void main(String[] args) {
         print(3, 3, "");
-        List<String> ans = new ArrayList<>();
-        makeList(3, 3, "", ans);
-        System.out.println(ans);
+        // List<String> ans = new ArrayList<>();
+        // makeList(3, 3, "", ans);
+        // System.out.println(ans);
 
-        System.out.println(pathRet(3,3,""));
+        // System.out.println(pathRet(3,3,""));
+        printDiagonal(3, 3, "");
     }
     private static void print(int r,int c,String processed){
         if(r==1 && c==1){
             System.out.println(processed);
             return;
         }
-    
-
+        
         if(r>1){
             print(r-1,c,processed+'D');
         }
@@ -53,5 +53,24 @@ public class PrintPaths {
         }
         left.addAll(right);
         return left;
+    }
+
+    //include diagonal path also
+    private static void printDiagonal(int r,int c,String processed){
+        if(r==1 && c==1){
+            System.out.println(processed);
+            return;
+        }
+        
+        if(r>1){
+            print(r-1,c,processed+'D');
+        }
+        if(c>1){
+            print(r,c-1,processed+'R');
+        }
+
+        if(r>1 && c>1){
+            print(r-1,c-1,processed+"DI");
+        }
     }
 }
